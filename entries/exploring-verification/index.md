@@ -3,9 +3,9 @@ title: "Exploring verification in Ash"
 description: "An introduction to propositions, evidence, and compile-time proof construction in Ash's emerging verification design."
 author: "Vlado"
 author_uri: "https://github.com/dikini"
-draft: true
-published: null
-updated: null
+draft: false
+published: "2026-10-23"
+updated: "2026-10-23"
 topics:
   - verification
   - language-design
