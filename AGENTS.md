@@ -19,5 +19,7 @@ navigation, search, routes, and deployment.
 - Relative article links should target source Markdown; relative image links
   should target assets within the article folder. The future importer must
   translate these into website URLs.
-- Before committing, run `git diff --check`, inspect changed metadata, and check
-  that local links and asset paths resolve. There is no automated test suite.
+- Before committing, spell-check changed prose, including titles and summaries,
+  run `git diff --check`, inspect changed metadata, and check that local links
+  and asset paths resolve. Follow `docs/authoring.md` for the spelling pass.
+  There is no automated test suite.

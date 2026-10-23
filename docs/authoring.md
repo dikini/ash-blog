@@ -60,6 +60,22 @@ For public headings and summaries, follow the Ash site's voice guide at
 `ash-site/docs/site-voice.md`. Personal narrative can retain the author's rhythm;
 it does not need to read like a website landing page.
 
+## Spelling review
+
+Spell-check new or changed prose after drafting or editing and before committing.
+Include titles, descriptions, headings, captions, and image alt text. Use British
+English, consistent with the site voice guide.
+
+Correct misspellings, accidental spacing, and obvious capitalisation or
+hyphenation errors. Preserve the author's phrasing, rhythm, deliberate fragments,
+and rhetorical exaggeration. Keep broader grammar and style suggestions separate
+from spelling corrections.
+
+Review suggestions in context: language names, technical terms, identifiers, code,
+and URLs must not be changed merely because a dictionary does not recognise them.
+A manual spelling pass is part of this workflow; no automated spell checker is
+configured.
+
 ## Intended publication handoff
 
 1. Write and review the article here. A Markdown editor provides basic preview.
