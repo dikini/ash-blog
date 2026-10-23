@@ -24,15 +24,15 @@ topics:
 
 This document brings together the requested subjects: laws and properties; propositions, contracts, and invariants; evidence; the relationship to types and kinds; Curry–Howard alternatives; compile-time verification; ordinary sandboxed Ash proof-construction code; and independent certification.
 
-The accessible conversation record contains five recent user messages. Its assistant replies are unresolved content references, and it provides no older turns or attachments. The original web conversation was unavailable without a separate sign-in. Consequently, this is a comprehensive working synthesis of the requested topics, **not a fully recovered transcript or a claim that every explanation below was previously agreed**.
+The initially accessible conversation record contains five recent user messages, with assistant replies represented by unresolved content references and no older turns or attachments. The user subsequently supplied the concluding assistant reply in [assistant-conclusion.md](assistant-conclusion.md). That reply recovers the architectural foundation accepted by the final user message; the other assistant replies and older turns remain unavailable. Consequently, this is a working synthesis informed by a recovered conclusion, **not a fully recovered transcript or a claim that every explanation below was previously agreed**.
 
 Three status labels distinguish provenance:
 
-- **Recorded direction:** Explicitly supported by the accessible user messages.
+- **Recorded direction:** Explicitly supported by the accessible user messages or the supplied concluding assistant reply. Provisional suggestions in that reply remain provisional.
 - **Working interpretation:** A coherent explanation or architectural reconstruction, rather than a recovered agreement.
 - **Open:** A design choice not established by the accessible record.
 
-The references added in this revision establish the intellectual background, relevant precedents, and tradeoffs. They do not retroactively establish what the missing conversation agreed. “Rocq” refers to the proof assistant formerly named Coq; historical publications retain their original titles. Historical papers are distinguished from current system documentation. Implications proposed for Ash are explicitly interpretations, rather than claims about an author's historical motivation.
+The references added in this revision establish the intellectual background, relevant precedents, and tradeoffs. They do not retroactively establish agreements in the unrecovered parts of the conversation. “Rocq” refers to the proof assistant formerly named Coq; historical publications retain their original titles. Historical papers are distinguished from current system documentation. Implications proposed for Ash are explicitly interpretations, rather than claims about an author's historical motivation.
 
 All syntax is newly written, illustrative pseudocode. Keywords, APIs, inference rules, and declaration forms are not established Ash syntax. The record uses “Ascii” in the message about ordinary code; this document follows the current request's name, **Ash**, without inferring a separate language or an ASCII-only requirement.
 
@@ -57,7 +57,15 @@ All syntax is newly written, illustrative pseudocode. Keywords, APIs, inference 
 
 **Recorded direction.** Ash's verification system and type system may share a logical foundation, but the design needs to distinguish their other dimensions. The discussion explicitly raises separate type and property/proposition universes, or different kinds within a uniform universe, as possible arrangements.
 
-The operational intention is that verification happens statically during compilation. The preferred way to express proof-construction activity is appropriately sandboxed ordinary Ash code executed at compile time. Other complications were explicitly deferred. The final accessible message accepts that a foundation has been reached, but the missing assistant replies prevent recovering the exact formulation accepted.
+The operational intention is that verification happens statically during compilation. The [recovered concluding reply](assistant-conclusion.md) formulates the accepted architectural foundation as follows:
+
+> Ordinary Ash code can execute during compilation to construct, discover, manipulate, and submit evidence for propositions. Its execution is sandboxed, and its results are subject to Ash's verification rules.
+
+The reply separates three concerns without requiring three languages: expression through ordinary Ash syntax and semantics; execution in a compile-time environment with restricted capabilities; and certification that determines whether the produced evidence establishes the proposition. Successful execution of proof-producing code is not itself a proof of its target proposition.
+
+It provisionally distinguishes the proposition language (the logical interpretation of Ash expressions), proof construction (ordinary Ash computation at compile time), and proof validation (the trusted judgment over the resulting evidence). Validation establishes the trust boundary. Construction may use algorithms, abstractions, recursion, and potentially permitted effects without requiring propositions or accepted certificates to have the same computational semantics.
+
+The reply also leaves open whether `proof` is a declaration associating a compile-time obligation with an Ash computation that discharges it, rather than a special kind of function. This is a starting point for examining universes and kinds without committing to full propositions-as-types. Other complications remain deferred.
 
 **Working interpretation.** A useful decomposition is:
 
@@ -303,7 +311,7 @@ Ordinary construction code need not necessarily be total if the system can termi
 
 ## 8. Independent certification and trust
 
-**Working interpretation.** Independent certification is a way to preserve the freedom of ordinary proof-construction code while keeping acceptance tied to a controlled logical basis. It is included because the current request specifically asks for it; its exact prior treatment is unavailable.
+**Recorded direction.** The recovered conclusion distinguishes proof construction from proof validation and identifies validation as the trust boundary: successful construction does not by itself establish the target proposition. **Working interpretation.** Independent certification develops that distinction into a way to validate evidence without trusting the constructor's assertion of success. The exact certification mechanism remains open.
 
 “Independent” means the certifier can validate the evidence against the goal without trusting the constructor's assertion of success. It need not mean a separate executable, process, vendor, or language.
 
@@ -433,14 +441,15 @@ The derived result remains conditional on the backend assumption. Registering it
 | Perform verification statically during compilation | Explicit stated intention |
 | Use appropriately sandboxed ordinary compile-time code | Explicit stated preference; this document uses the requested name Ash |
 | Defer additional complications | Explicit instruction in the source discussion |
-| Treat the discussion as having reached a foundation | Explicit final acceptance, with the accepted assistant formulation unavailable |
+| Separate expression, compile-time execution, and certification | Recovered conclusion; three concerns without requiring three languages |
+| Distinguish construction success from establishing the proposition | Recovered conclusion; validation establishes the trust boundary |
+| Treat the discussion as having reached a foundation | Final user acceptance, with the concluding formulation now recovered in [assistant-conclusion.md](assistant-conclusion.md) |
 
 ### 10.2 Working interpretations, not established decisions
 
 - Laws, contracts, and invariants can be understood as roles for propositions.
 - Evidence should preserve scope and assumptions instead of using a single scalar strength.
 - Evidence subsumption suggests a preorder or a partial order after equivalence is accounted for.
-- Proof construction should be distinguished from certification.
 - Independent certification can support ordinary Ash construction code without trusting it as a logical authority.
 - Static phase selection alone does not decide whether Curry–Howard is used.
 - A shared logical core can coexist with distinct typing and verification judgments.
@@ -481,8 +490,8 @@ Only the latter part of the sequence is directly recoverable. The earlier laws/p
 | Universes and kinds | Are propositions another kind in one universe? | Classification, universe level, phase, and erasure are separate | Recorded question; alternatives reconstructed |
 | Expression and checking time | How are proofs written, and when are they validated? | Surface language, proof representation, construction, and checking phase | Recorded question |
 | Curry–Howard comparison | Does static verification make the design distinct? | Compile-time checking is compatible with Curry–Howard; architecture decides the relationship | Recorded intuition; clarification added here |
-| Ordinary compile-time code | Can the host language construct proofs? | General construction code and certified evidence serve distinct roles | Preference recorded; architecture reconstructed |
-| Independent certification | How can ordinary construction remain logically controlled? | Constructor success and proof acceptance must be distinguished | Requested topic; treatment reconstructed |
+| Ordinary compile-time code | Can the host language construct proofs? | General construction code and certified evidence serve distinct roles | Preference and concluding architecture recorded |
+| Independent certification | How can ordinary construction remain logically controlled? | Constructor success and proof acceptance must be distinguished | Distinction recorded in recovered conclusion; independent checking details reconstructed |
 | Scope boundary | Should all related complications be resolved now? | Keep a foundation while leaving mechanisms open | Deferral recorded |
 
 The strongest common thread is separation of concerns: what is claimed, what role the claim plays, what evidence exists, how that evidence is obtained, what accepts it, and when acceptance occurs.
@@ -757,4 +766,4 @@ The literature gives Ash a set of defensible choices, not a uniquely mandated fo
 
 ---
 
-**Working foundation:** Ash is intended to verify claims during compilation using appropriately sandboxed ordinary Ash code for proof construction. The surrounding logical organization, evidence model, certification boundary, and syntax remain to be specified. The references supply precedents and tradeoffs for making those choices; they do not replace the need to specify and justify Ash's own logical rules.
+**Working foundation:** Ordinary Ash code can run in a restricted compile-time environment to construct and submit evidence; validation determines whether that evidence establishes the proposition. Expression, execution, and certification are distinct concerns without requiring three languages, and validation establishes the trust boundary. The detailed logical organization, evidence model, certification mechanism, and syntax remain to be specified. The references supply precedents and tradeoffs for making those choices; they do not replace the need to specify and justify Ash's own logical rules.
