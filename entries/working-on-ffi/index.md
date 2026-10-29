@@ -3,9 +3,9 @@ title: "Working on FFI in Ash"
 description: "Why FFI became the next development target, what it should enable, and why the work reaches into resources, effects, and type checking."
 author: "Vlado"
 author_uri: "https://github.com/dikini"
-draft: true
-published: null
-updated: null
+draft: false
+published: "2026-10-29"
+updated: "2026-10-29"
 topics:
   - ffi
   - language-design
